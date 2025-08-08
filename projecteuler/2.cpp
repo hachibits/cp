@@ -27,8 +27,24 @@ typedef pair<ll,ll> pll;
 const ll MOD = (ll)(1e9)+7ll;
 const ll INF = (1ll << 60);
 
+int Fib(int n) {
+  return n < 2 ? n : Fib(n-1) + Fib(n-2);
+}
+
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(0);
+  int ans = 0;
+  for (int i = 0;; i++) {
+    int x = Fib(i);
+    if (x % 2 != 0) {
+      continue;
+    }
+    if (x > 4*1e6) {
+      cout << ans << '\n';
+      break;
+    }
+    ans += x;
+  }
   return 0;
 }

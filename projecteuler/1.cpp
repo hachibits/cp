@@ -30,5 +30,13 @@ const ll INF = (1ll << 60);
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(0);
+  int n = 1000;
+  int ans = 0;
+  for (int i = 0; i < n; i++) {
+    if (i % 3 == 0 || i % 5 == 0) {
+      ans += i;
+    }
+  }
+  cout << ans << endl;
   return 0;
 }
