@@ -30,9 +30,9 @@ const ll INF = (1ll << 60);
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(0);
-//  const int n = 1e6;
+  const int maxN = 1e6;
   unordered_map<long long, long long> memo;
-  auto f = [&](auto&& self, long long n) {
+  auto f = [&](auto&& self, long long n) -> long long {
     if (n == 1) {
       return (long long) 1;
     }
@@ -47,7 +47,7 @@ int main() {
   };
   long long mx = 0;
   long long mx_i = 0;
-  for (long long i = 1; i < 1000000; i++) {
+  for (long long i = 1; i < maxN; i++) {
     long long steps = f(f, i);
     if (steps > mx) {
       mx = steps;
