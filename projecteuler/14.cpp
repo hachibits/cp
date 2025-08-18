@@ -30,23 +30,30 @@ const ll INF = (1ll << 60);
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(0);
-  const int n = 1e6;
-  int mx = 0;
-  auto Collatz = [](int x) { 
-    int cnt = 0;
-    while (x > 1) {
-      if (x % 2 == 0) {
-        x /= 2;
-      } else {
-        x = 3 * x + 1;
-      }
-      cnt++;
+//  const int n = 1e6;
+  unordered_map<long long, long long> memo;
+  auto f = [&](auto&& self, long long n) {
+    if (n == 1) {
+      return (long long) 1;
     }
-    return ++cnt;
+    if (memo.find(n) != memo.end()) {
+      return memo[n];
+    };
+    if (n % 2 == 0) {
+      return memo[n] = 1 + self(self, n / 2);
+    } else {
+      return memo[n] = 1 + self(self, 3 * n + 1);
+    }
   };
-  for (int i = 0; i < n; i++) {
-    mx = max(mx, Collatz(i));
+  long long mx = 0;
+  long long mx_i = 0;
+  for (long long i = 1; i < 1000000; i++) {
+    long long steps = f(f, i);
+    if (steps > mx) {
+      mx = steps;
+      mx_i = i;
+    }
   }
-  cout << mx << '\n';
+  cout << mx_i << '\n';
   return 0;
 }
