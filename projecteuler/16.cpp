@@ -30,12 +30,26 @@ const ll INF = (1ll << 60);
 int main() {
   ios_base::sync_with_stdio(false);
   cin.tie(0);
-  ll n = pow(2, 1000);
-  string s = to_string(n);
-  ll ans = 0;
-  for (int i = 0; i < (int) s.size(); i++) {
-    ans += s[i] - '0';
+  //ll n = pow(2, 1000);
+  //string s = to_string(n);
+  //ll ans = 0;
+  //for (int i = 0; i < (int) s.size(); i++) {
+  //  ans += s[i] - '0';
+  //}
+  //cout << ans << '\n';
+  string s = "1";
+  for (int i = 0; i < 1000; i++) {
+    int carry = 0;
+    for (int j = (int)s.size() - 1; j >= 0; j--) {
+      int x = (s[j] - '0') * 2 + carry;
+      s[j] = (x % 10) + '0';
+      carry = x / 10;
+    }
+    if (carry) s.insert(s.begin(), carry + '0');
   }
-  cout << ans << '\n';
+  long long ans = 0;
+  for (char c : s) ans += c - '0';
+  cout << "2^1000 = " << s << "\n";
+  cout << ans << "\n";
   return 0;
 }
