@@ -49,7 +49,7 @@ int main() {
   }
   long long ans = 0;
   for (char c : s) ans += c - '0';
-  cout << "2^1000 = " << s << "\n";
+//  cout << "2^1000 = " << s << "\n";
   cout << ans << "\n";
   return 0;
 }
